@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:notification_app/app/encode_image.dart';
 import 'package:notification_app/app/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart';
 
@@ -12,12 +11,10 @@ Future<void> showNotification({
   bool isScheduled = false,
   TZDateTime? scheduledDate,
   bool isNotificationPermanent = false,
+  String largeIcon = "",
 }) async {
   FlutterLocalNotification notification = FlutterLocalNotification();
   notification.initialize();
-
-  final String largeIcon = await base64encodedImage(
-      'https://assets.pokemon.com/assets/cms2/img/pokedex/full/114.png');
 
   final android = AndroidNotificationDetails(
     'testeId',
@@ -27,7 +24,7 @@ Future<void> showNotification({
     priority: Priority.high,
     importance: Importance.max,
     ongoing: isNotificationPermanent,
-    largeIcon: ByteArrayAndroidBitmap.fromBase64String(largeIcon),
+    largeIcon: largeIcon == "" ? null : ByteArrayAndroidBitmap.fromBase64String(largeIcon),
   );
 
   const iOS = IOSNotificationDetails();

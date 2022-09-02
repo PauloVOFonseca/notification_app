@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notification_app/app/encode_image.dart';
 import 'package:notification_app/app/flutter_local_notifications.dart';
 import 'package:notification_app/app/show_notification.dart';
 import 'package:timezone/timezone.dart';
@@ -62,6 +63,8 @@ class _HomePageState extends State<HomePage> {
       bodyText: 'Test Basic Notification',
       channelId: '1231',
       title: 'Basic',
+      largeIcon: await base64encodedImage(
+          'https://assets.pokemon.com/assets/cms2/img/pokedex/full/114.png'),
     );
   }
 
